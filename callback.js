@@ -17,8 +17,8 @@ let posts = [
     }
 ]
 
-function getPosts(){
-    setTimeout (() => {
+function getPosts() {
+    setTimeout(() => {
         let outPut = '';
         posts.forEach((post, index) => {
             outPut += `<h4>${post.title}</h4> <p>${post.body} </p>`
@@ -26,4 +26,15 @@ function getPosts(){
         document.body.innerHTML = outPut;
     }, 1000);
 }
-getPosts();
+
+// Now Callback comes in
+
+function createPost(post, callback) {
+    setTimeout(() => {
+        posts.push(post)
+        callback();
+    }, 2000)
+}
+
+// here callback is passed as an argument in reactePosts() function and it executes after function is finished executing.
+createPost({title: "title 5",body: "I'm Body 5"}, getPosts)
